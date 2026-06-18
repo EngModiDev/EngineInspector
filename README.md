@@ -1,7 +1,7 @@
 # README.md
 
 <p align="center">
-  <img src="input_file_0.png" alt="EngineInspector Logo" width="220" height="220" />
+  <img src="assets/logo.png" alt="EngineInspector Logo" width="220" height="220" />
 </p>
 
 <h1 align="center">EngineInspector</h1>
