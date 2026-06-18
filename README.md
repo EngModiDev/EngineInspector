@@ -21,12 +21,13 @@
 *   [2. Download Links](#2-download-links)
 *   [3. Quick Start (Usage)](#3-quick-start-usage)
 *   [4. Key Features](#4-key-features)
-*   [5. Deep Technical Features & Architecture](#5-deep-technical-features--architecture)
-*   [6. The Power of "Semantic Diffing"](#6-the-power-of-semantic-diffing)
-*   [7. First-Run & Offline Integrity](#7-first-run--offline-integrity)
-*   [8. Security & Transparency (False Positives)](#8-security--transparency-false-positives)
-*   [9. Advanced FAQ](#9-advanced-faq)
-*   [10. Contact & Support](#10-contact--support)
+*   [5. Real-World Benchmarks & Reproducibility](#5-real-world-benchmarks--reproducibility)
+*   [6. Deep Technical Features & Architecture](#6-deep-technical-features--architecture)
+*   [7. The Power of "Semantic Diffing"](#7-the-power-of-semantic-diffing)
+*   [8. First-Run & Offline Integrity](#8-first-run--offline-integrity)
+*   [9. Security & Transparency (False Positives)](#9-security--transparency-false-positives)
+*   [10. Advanced FAQ](#10-advanced-faq)
+*   [11. Contact & Support](#11-contact--support)
 
 ***
 
@@ -88,7 +89,7 @@ Verify local engine signatures, active dynamic parser modes, and check for updat
 
 ## 4. Key Features
 
-*   **🌐 Broad Multi-Language Support:** Full semantic parsing of C++ (using combined Tree-Sitter & Clang backends) and Python (utilizing built-in tokens and syntax trees), with platform support designed for Rust, Java, JavaScript, and TypeScript.
+*   **🌐 Language Support & Roadmap:** Full semantic parsing of C++ (using combined Tree-Sitter & Clang backends) and Python (utilizing built-in tokens and syntax trees). Robust support for C is inherently active via the Clang pipeline. Extensions for Rust, Java, JavaScript, and TypeScript are planned for future releases.
 *   **⚡ Hybrid AST Parsing (libclang + Tree-Sitter):** Merges structural parser layouts with deep preprocessor macro evaluations, template arguments, and semantic typing.
 *   **📊 Parallel CFG & SSA Compiler:** Reconstructs linearized Control Flow Graphs (CFG) across basic blocks in parallel, transforming variables into SSA representations using the Lengauer-Tarjan dominator tree algorithm.
 *   **🔍 Interprocedural Call Graph & Points-To Analysis:** Traces function call paths across file boundaries. Resolves indirect, virtual, and dynamic dispatch calls utilizing points-to and type-based indexes.
@@ -98,7 +99,33 @@ Verify local engine signatures, active dynamic parser modes, and check for updat
 
 ***
 
-## 5. Deep Technical Features & Architecture
+## 5. Real-World Benchmarks & Reproducibility
+
+We do not believe in theoretical marketing claims. To prove the raw processing power and surgical precision of EngineInspector, we have bundled the complete testing suite directly into this repository.
+
+You can explore the `real_tests/` directory to inspect the exact targets and outputs used during validation:
+
+*   **📂 `real_tests/` Workspace:** Contains the exact structural tests for the Python Core, `cpp_targets`, and the massive SQLite `btree.c` updates (`sqlite_v_old` vs `sqlite_v_new`).
+*   **📄 `log.txt` & JSON Artifacts:** The untouched, high-fidelity parsing output logs showing the execution speed down to the millisecond.
+
+### 💻 Hardware Baseline (Ultra-Low Spec Validation)
+To prove that our hybrid architecture (`Rust` FFI + `PackedVec` memory cache layouts) is built for efficiency, these benchmarks were **not** run on an expensive cloud server. They were executed locally on a highly constrained, entry-level developer machine:
+*   **CPU:** 2 Cores / 4 Threads (Intel Core i3 baseline architecture)
+*   **RAM:** 4GB DDR4 Memory
+*   **Performance:** Even under these hardware constraints, the semantic diffing of SQLite's `btree.c` (over 10,000 lines of highly complex C logic) finishes in **0.769 seconds** with an absolute peak RAM footprint that never throttles the host OS.
+
+### 🚀 Verify It Yourself (Step-by-Step)
+
+We have included architectural visual guides inside the `real_tests/` directory to get you started immediately:
+
+1.  **Environment Setup:** Download the standalone `engineinspector.exe` and place it directly inside your working directory as shown in the visual architecture map (`real_tests/structure_guide.png`).
+2.  **The "Zero-Config" Lazy Bootstrap:** Open your terminal or PowerShell inside that folder and run the command. The engine will instantly detect the environment and pull down the platform-specific dependencies into the local `libs/` folder automatically.
+3.  **Run the Benchmark Command:**
+    ```bash
+    ./engineinspector compare-paths real_tests/sqlite_v_old/ real_tests/sqlite_v_new/ --out-dir real_tests/reports/
+    ```
+
+## 6. Deep Technical Features & Architecture
 
 <details>
 <summary><b>🛠️ Click to expand: Deep Technical Features &amp; Architecture</b></summary>
@@ -148,7 +175,7 @@ Calculated in the Python analysis layer (`analysis/metrics.py`), the `Metrics` c
 
 ***
 
-## 6. The Power of "Semantic Diffing"
+## 7. The Power of "Semantic Diffing"
 
 <details>
 <summary><b>💡 Click to expand: Git Diff vs. Semantic Diffing</b></summary>
@@ -206,7 +233,7 @@ EngineInspector approaches diffing structurally using an abstract syntax tree pa
 
 ***
 
-## 7. First-Run & Offline Integrity
+## 8. First-Run & Offline Integrity
 
 To keep the binary size minimal, EngineInspector does not bundle heavy platform-specific shared libraries (`libclang`). Instead, the tool uses an automated bootstrap process on its first run:
 
@@ -234,7 +261,7 @@ To keep the binary size minimal, EngineInspector does not bundle heavy platform-
 
 ***
 
-## 8. Security & Transparency (False Positives)
+## 9. Security & Transparency (False Positives)
 
 <details>
 <summary><b>⚠️ Installation Notes &amp; Windows SmartScreen</b></summary>
@@ -254,7 +281,7 @@ As EngineInspector is an independently developed, closed-source utility, you may
 
 ***
 
-## 9. Advanced FAQ
+## 10. Advanced FAQ
 
 <details>
 <summary><b>💬 Click to expand: Advanced FAQ</b></summary>
@@ -303,7 +330,7 @@ A: When a code change is made, recalculating hashes for the entire AST tree woul
 
 ***
 
-## 10. Contact & Support
+## 11. Contact & Support
 
 EngineInspector is developed and maintained by **@EngModiDev**.
 
