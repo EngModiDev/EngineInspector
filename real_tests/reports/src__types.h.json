@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 4,
+    "chunks": 3,
+    "duration_seconds": 0.292
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef TYPES_H_INCLUDED\n    #define TYPES_H_INCLUDED\n\n// When compiling with provided Makefile (e.g. for Linux and OSX), configuration\n// is done automatically. To get started type 'make help'.\n//\n// When Makefile is not used (e.g. with Microsoft Visual Studio) some switches\n// need to be set manually:\n//\n// -DNDEBUG      | Disable debugging mode. Always use this for release.\n//\n// -DNO_PREFETCH ...",
+      "after": "#ifndef TYPES_H_INCLUDED\n    #define TYPES_H_INCLUDED\n\n// When compiling with provided Makefile (e.g. for Linux and OSX), configuration\n// is done automatically. To get started type 'make help'.\n//\n// When Makefile is not used (e.g. with Microsoft Visual Studio) some switches\n// need to be set manually:\n//\n// -DNDEBUG      | Disable debugging mode. Always use this for release.\n//\n// -DNO_PREFETCH ...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@418",
+      "before": "// #ifndef TYPES_H_INCLUDED",
+      "after": "// #ifndef TYPES_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.292
+    },
+    "node_counts": {
+      "left": 2688,
+      "right": 3293
+    },
+    "ast_depth": {
+      "left": 20,
+      "right": 20
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\types.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\types.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692572.6132402
+  }
+}

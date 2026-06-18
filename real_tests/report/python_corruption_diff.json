@@ -1,0 +1,125 @@
+{
+  "summary": {
+    "added": 8.0,
+    "removed": 3.0,
+    "modified": 0.0,
+    "matches": 11,
+    "chunks": 11,
+    "duration_seconds": 0.021
+  },
+  "chunks": [
+    {
+      "type": "delete",
+      "path": "import_statement@0",
+      "before": "import os",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "import_statement@1",
+      "before": "import sys",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "def analyze_node",
+      "before": "def analyze_node(node_id, branch_data):\n    print(f\"Analyzing node: {node_id}\")\n\n    for i in range(100):\n        if i % 2 == 0:\n            branch_data.append([i, \"valid\"\n\n    code_str = \"if True print('Hacked')\"\n    exec(code_str)\n\nclass MetricCalculator:\n    def __init__(self):\n        self.total = 0",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "expression_statement@0",
+      "before": null,
+      "after": "importos",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "expression_statement@1",
+      "before": null,
+      "after": "importsys",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "expression_statement@2",
+      "before": null,
+      "after": "importjson",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "expression_statement@4",
+      "before": null,
+      "after": "GLOBAL_MAX_DEPTH=9999",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "defanalyze_node_v2",
+      "before": null,
+      "after": "defanalyze_node_v2(node_id,branch_data):",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "print",
+      "before": null,
+      "after": "print(\"Advanced analysis started...\")",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "ERROR@7",
+      "before": null,
+      "after": "whileTrue:\n    ifnode_id<0:",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "expression_statement@12",
+      "before": null,
+      "after": "classMetricCalculator:\n    def__init__(self):\n        self.total=512",
+      "impact": "low",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "python",
+    "parser_mode": "tree-sitter",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.021
+    },
+    "node_counts": {
+      "left": 105,
+      "right": 61
+    },
+    "ast_depth": {
+      "left": 11,
+      "right": 9
+    },
+    "left": {
+      "path": "D:\\real_tests\\py_targets\\bad_parser_v1.py",
+      "language": "python"
+    },
+    "right": {
+      "path": "D:\\real_tests\\py_targets\\bad_parser_v2.py",
+      "language": "python"
+    },
+    "timestamp": 1781693281.6219132
+  }
+}

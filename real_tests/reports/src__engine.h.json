@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 0.232
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef ENGINE_H_INCLUDED\n#define ENGINE_H_INCLUDED\n\n#include <cstddef>\n#include <cstdint>\n#include <functional>\n#include <optional>\n#include <string>\n#include <string_view>\n#include <utility>\n#include <vector>\n\n#include \"nnue/network.h\"\n#include \"numa.h\"\n#include \"position.h\"\n#include \"search.h\"\n#include \"syzygy/tbprobe.h\"  // for Stockfish::Depth\n#include \"thread.h\"\n#include \"tt.h\"\n#include \"uci...",
+      "after": "#ifndef ENGINE_H_INCLUDED\n#define ENGINE_H_INCLUDED\n\n#include <cstddef>\n#include <cstdint>\n#include <functional>\n#include <map>\n#include <optional>\n#include <string>\n#include <string_view>\n#include <utility>\n#include <vector>\n\n#include \"history.h\"\n#include \"nnue/network.h\"\n#include \"numa.h\"\n#include \"position.h\"\n#include \"search.h\"\n#include \"syzygy/tbprobe.h\"  // for Stockfish::Depth\n#include \"thr...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@127",
+      "before": "// #ifndef ENGINE_H_INCLUDED",
+      "after": "// #ifndef ENGINE_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.232
+    },
+    "node_counts": {
+      "left": 833,
+      "right": 938
+    },
+    "ast_depth": {
+      "left": 20,
+      "right": 20
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\engine.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\engine.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692568.9937897
+  }
+}

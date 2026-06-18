@@ -1,0 +1,165 @@
+{
+  "summary": {
+    "added": 10.0,
+    "removed": 3.0,
+    "modified": 3.0,
+    "matches": 31,
+    "chunks": 16,
+    "duration_seconds": 0.463
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@23",
+      "before": "#include <memory>",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_def@27",
+      "before": null,
+      "after": "#define INCBIN_SILENCE_BITCODE_WARNING",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@28",
+      "before": null,
+      "after": "#include \"../incbin/incbin.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@29",
+      "before": "#include \"../incbin/incbin.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@30",
+      "before": "#include \"../memory.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "// Macro to embed the default efficiently updatable neural network",
+      "before": null,
+      "after": "// Macro to embed the default efficiently updatable neural network (NNUE) file",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "// data in the engine binary",
+      "before": null,
+      "after": "// data in the engine binary (using incbin.h, by Dale Weiler).",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "comment@40",
+      "before": null,
+      "after": "// This macro invocation will declare the following three variables",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "comment@41",
+      "before": null,
+      "after": "//     const unsigned char        gEmbeddedNNUEData[];  // a pointer to the embedded data",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "comment@42",
+      "before": null,
+      "after": "//     const unsigned char *const gEmbeddedNNUEEnd;     // a marker to the end",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "comment@43",
+      "before": null,
+      "after": "//     const unsigned int         gEmbeddedNNUESize;    // the size of the embedded file",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "comment@44",
+      "before": null,
+      "after": "// Note that this does not work in Microsoft Visual Studio.",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "#if !defined",
+      "before": null,
+      "after": "#if !defined(_MSC_VER) && !defined(NNUE_EMBEDDING_OFF)\nINCBIN(EmbeddedNNUEBig, EvalFileDefaultNameBig);\nINCBIN(EmbeddedNNUESmall, EvalFileDefaultNameSmall);\n#else\nconst unsigned char        gEmbeddedNNUEBigData[1]   = {0x0};\nconst unsigned char* const gEmbeddedNNUEBigEnd       = &gEmbeddedNNUEBigData[1];\nconst unsigned int         gEmbeddedNNUEBigSize      = 1;\nconst unsigned char        gEmbedded...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@38",
+      "before": "namespace {\n// Macro to embed the default efficiently updatable neural network (NNUE) file\n// data in the engine binary (using incbin.h, by Dale Weiler).\n// This macro invocation will declare the following three variables\n//     const unsigned char        gEmbeddedNNUEData[];  // a pointer to the embedded data\n//     const unsigned char *const gEmbeddedNNUEEnd;     // a marker to the end\n//     co...",
+      "after": "namespace {\n\nstruct EmbeddedNNUE {\n    EmbeddedNNUE(const unsigned char* embeddedData,\n                 const unsigned char* embeddedEnd,\n                 const unsigned int   embeddedSize) :\n        data(embeddedData),\n        end(embeddedEnd),\n        size(embeddedSize) {}\n    const unsigned char* data;\n    const unsigned char* end;\n    const unsigned int   size;\n};\n\nusing namespace Stockfish::E...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@454",
+      "before": "// namespace Stockfish::Eval::NNUE",
+      "after": "// namespace Stockfish::Eval::NNUE",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.463
+    },
+    "node_counts": {
+      "left": 3983,
+      "right": 3621
+    },
+    "ast_depth": {
+      "left": 23,
+      "right": 28
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\network.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\network.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.0600662
+  }
+}

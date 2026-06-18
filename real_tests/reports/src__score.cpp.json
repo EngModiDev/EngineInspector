@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 2.0,
+    "matches": 7,
+    "chunks": 2,
+    "duration_seconds": 1.139
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@26",
+      "before": "namespace Stockfish {\n\nScore::Score(Value v, const Position& pos) {\n    assert(-VALUE_INFINITE < v && v < VALUE_INFINITE);\n\n    if (std::abs(v) < VALUE_TB_WIN_IN_MAX_PLY)\n    {\n        score = InternalUnits{UCIEngine::to_cp(v, pos)};\n    }\n    else if (std::abs(v) <= VALUE_TB)\n    {\n        auto distance = VALUE_TB - std::abs(v);\n        score         = (v > 0) ? Tablebase{distance, true} : Tableb...",
+      "after": "namespace Stockfish {\n\nScore::Score(Value v, const Position& pos) {\n    assert(-VALUE_INFINITE < v && v < VALUE_INFINITE);\n\n    if (!is_decisive(v))\n    {\n        score = InternalUnits{UCIEngine::to_cp(v, pos)};\n    }\n    else if (std::abs(v) <= VALUE_TB)\n    {\n        auto distance = VALUE_TB - std::abs(v);\n        score         = (v > 0) ? Tablebase{distance, true} : Tablebase{-distance, false};...",
+      "impact": "low",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 1.139
+    },
+    "node_counts": {
+      "left": 239,
+      "right": 235
+    },
+    "ast_depth": {
+      "left": 17,
+      "right": 17
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\score.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\score.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692571.3841994
+  }
+}

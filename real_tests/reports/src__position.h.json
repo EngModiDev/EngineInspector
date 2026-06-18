@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 1.182
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef POSITION_H_INCLUDED\n#define POSITION_H_INCLUDED\n\n#include <cassert>\n#include <deque>\n#include <iosfwd>\n#include <memory>\n#include <string>\n\n#include \"bitboard.h\"\n#include \"nnue/nnue_accumulator.h\"\n#include \"nnue/nnue_architecture.h\"\n#include \"types.h\"\n\nnamespace Stockfish {\n\nclass TranspositionTable;\n\n// StateInfo struct stores information needed to restore a Position object to\n// its prev...",
+      "after": "#ifndef POSITION_H_INCLUDED\n#define POSITION_H_INCLUDED\n\n#include <array>\n#include <cassert>\n#include <deque>\n#include <iosfwd>\n#include <memory>\n#include <new>\n#include <string>\n\n#include \"bitboard.h\"\n#include \"types.h\"\n\nnamespace Stockfish {\n\nclass TranspositionTable;\nstruct SharedHistories;\n\n// StateInfo struct stores information needed to restore a Position object to\n// its previous state when...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@363",
+      "before": "// #ifndef POSITION_H_INCLUDED",
+      "after": "// #ifndef POSITION_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 1.182
+    },
+    "node_counts": {
+      "left": 3159,
+      "right": 3661
+    },
+    "ast_depth": {
+      "left": 18,
+      "right": 18
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\position.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\position.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692571.3867717
+  }
+}

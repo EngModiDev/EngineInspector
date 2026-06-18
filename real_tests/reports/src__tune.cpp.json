@@ -1,0 +1,125 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 11.0,
+    "matches": 22,
+    "chunks": 11,
+    "duration_seconds": 0.29
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@108",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@111",
+      "before": "// Init options with tuning session results instead of default values. Useful to",
+      "after": "// Init options with tuning session results instead of default values. Useful to",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@112",
+      "before": "// get correct bench signature after a tuning session or to test tuned values.",
+      "after": "// get correct bench signature after a tuning session or to test tuned values.",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@113",
+      "before": "// Just copy fishtest tuning results in a result.txt file and extract the",
+      "after": "// Just copy fishtest tuning results in a result.txt file and extract the",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@114",
+      "before": "// values with:",
+      "after": "// values with:",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@115",
+      "before": "//",
+      "after": "//",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "// cat results.txt | sed 's/^param: \\",
+      "before": "// cat results.txt | sed 's/^param: \\([^,]*\\), best: \\([^,]*\\).*/  TuneResults[\"\\1\"] = int(round(\\2));/'",
+      "after": "// cat results.txt | sed 's/^param: \\([^,]*\\), best: \\([^,]*\\).*/  TuneResults[\"\\1\"] = int(round(\\2));/'",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@117",
+      "before": "//",
+      "after": "//",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@118",
+      "before": "// Then paste the output below, as the function body",
+      "after": "// Then paste the output below, as the function body",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@125",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.29
+    },
+    "node_counts": {
+      "left": 817,
+      "right": 814
+    },
+    "ast_depth": {
+      "left": 20,
+      "right": 20
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\tune.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\tune.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692572.5338304
+  }
+}

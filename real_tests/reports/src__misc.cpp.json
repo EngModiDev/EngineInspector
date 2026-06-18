@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "added": 2.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 19,
+    "chunks": 5,
+    "duration_seconds": 0.376
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@20",
+      "before": null,
+      "after": "#include <array>",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@22",
+      "before": null,
+      "after": "#include <cassert>",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@35",
+      "before": "namespace Stockfish {\n\nnamespace {\n\n// Version number or dev.\nconstexpr std::string_view version = \"17\";\n\n// Our fancy logging facility. The trick here is to replace cin.rdbuf() and\n// cout.rdbuf() with two Tie objects that tie cin and cout to a file stream. We\n// can toggle the logging of std::cout and std:cin at runtime whilst preserving\n// usual I/O functionality, all without changing a single ...",
+      "after": "namespace Stockfish {\n\nnamespace {\n\n// Version number or dev.\nconstexpr std::string_view version = \"18\";\n\n// Our fancy logging facility. The trick here is to replace cin.rdbuf() and\n// cout.rdbuf() with two Tie objects that tie cin and cout to a file stream. We\n// can toggle the logging of std::cout and std::cin at runtime whilst preserving\n// usual I/O functionality, all without changing a single...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@502",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.376
+    },
+    "node_counts": {
+      "left": 4133,
+      "right": 4443
+    },
+    "ast_depth": {
+      "left": 24,
+      "right": 24
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\misc.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\misc.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.369885
+  }
+}

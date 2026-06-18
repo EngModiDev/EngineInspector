@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 1.0,
+    "modified": 4.0,
+    "matches": 20,
+    "chunks": 5,
+    "duration_seconds": 0.77
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@18",
+      "before": "// Code for calculating NNUE evaluation function",
+      "after": "// Code for calculating NNUE evaluation function",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@32",
+      "before": "#include \"../evaluate.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@39",
+      "before": "namespace Stockfish::Eval::NNUE {\n\n\nconstexpr std::string_view PieceToChar(\" PNBRQK  pnbrqk\");\n\n\nvoid hint_common_parent_position(const Position&    pos,\n                                 const Networks&    networks,\n                                 AccumulatorCaches& caches) {\n    if (Eval::use_smallnet(pos))\n        networks.small.hint_common_access(pos, &caches.small);\n    else\n        networks....",
+      "after": "namespace Stockfish::Eval::NNUE {\n\n\nconstexpr std::string_view PieceToChar(\" PNBRQK  pnbrqk\");\n\n\nnamespace {\n// Converts a Value into (centi)pawns and writes it in a buffer.\n// The buffer must have capacity for at least 5 chars.\nvoid format_cp_compact(Value v, char* buffer, const Position& pos) {\n\n    buffer[0] = (v < 0 ? '-' : v > 0 ? '+' : ' ');\n\n    int cp = std::abs(UCIEngine::to_cp(v, pos));\n...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@202",
+      "before": "// namespace Stockfish::Eval::NNUE",
+      "after": "// namespace Stockfish::Eval::NNUE",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.77
+    },
+    "node_counts": {
+      "left": 1943,
+      "right": 1820
+    },
+    "ast_depth": {
+      "left": 19,
+      "right": 19
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\nnue_misc.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\nnue_misc.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.6380196
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "added": 1.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 9,
+    "chunks": 4,
+    "duration_seconds": 0.479
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "#if defined",
+      "before": null,
+      "after": "#if defined(USE_AVX512ICL)\n    #include <array>\n    #include <algorithm>\n    #include <immintrin.h>\n#endif",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@26",
+      "before": "namespace Stockfish {\n\nnamespace {\n\ntemplate<GenType Type, Direction D, bool Enemy>\nExtMove* make_promotions(ExtMove* moveList, [[maybe_unused]] Square to) {\n\n    constexpr bool all = Type == EVASIONS || Type == NON_EVASIONS;\n\n    if constexpr (Type == CAPTURES || all)\n        *moveList++ = Move::make<PROMOTION>(to - D, to, QUEEN);\n\n    if constexpr ((Type == CAPTURES && Enemy) || (Type == QUIETS ...",
+      "after": "namespace Stockfish {\n\nnamespace {\n\n#if defined(USE_AVX512ICL)\n\ninline Move* write_moves(Move* moveList, uint32_t mask, __m512i vector) {\n    // Avoid _mm512_mask_compressstoreu_epi16() as it's 256 uOps on Zen4\n    _mm512_storeu_si512(reinterpret_cast<__m512i*>(moveList),\n                        _mm512_maskz_compress_epi16(mask, vector));\n    return moveList + popcount(mask);\n}\n\ntemplate<Direction...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@255",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.479
+    },
+    "node_counts": {
+      "left": 2348,
+      "right": 3016
+    },
+    "ast_depth": {
+      "left": 22,
+      "right": 26
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\movegen.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\movegen.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.5167205
+  }
+}

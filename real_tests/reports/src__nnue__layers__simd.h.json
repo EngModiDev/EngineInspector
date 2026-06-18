@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 1.0,
+    "modified": 0.0,
+    "matches": 0,
+    "chunks": 1,
+    "duration_seconds": 0.0
+  },
+  "chunks": [
+    {
+      "type": "delete",
+      "path": "src\\nnue\\layers\\simd.h",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is",
+      "after": null,
+      "impact": "high",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.0
+    },
+    "node_counts": {
+      "left": 0,
+      "right": 0
+    },
+    "ast_depth": {
+      "left": 1,
+      "right": 1
+    },
+    "left": {
+      "path": "src\\nnue\\layers\\simd.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "src\\nnue\\layers\\simd.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692568.899436
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "summary": {
+    "added": 4.0,
+    "removed": 0.0,
+    "modified": 2.0,
+    "matches": 27,
+    "chunks": 6,
+    "duration_seconds": 0.229
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@20",
+      "before": null,
+      "after": "#include <algorithm>",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@35",
+      "before": null,
+      "after": "#include \"nnue/nnue_misc.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@36",
+      "before": null,
+      "after": "#include \"numa.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@40",
+      "before": null,
+      "after": "#include \"shm.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@42",
+      "before": "namespace Stockfish {\n\nnamespace NN = Eval::NNUE;\n\nconstexpr auto StartFEN  = \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\";\nconstexpr int  MaxHashMB = Is64Bit ? 33554432 : 2048;\n\nEngine::Engine(std::string path) :\n    binaryDirectory(CommandLine::get_binary_directory(path)),\n    numaContext(NumaConfig::from_system()),\n    states(new std::deque<StateInfo>(1)),\n    threads(),\n    netwo...",
+      "after": "namespace Stockfish {\n\nnamespace NN = Eval::NNUE;\n\nconstexpr auto StartFEN   = \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\";\nconstexpr int  MaxHashMB  = Is64Bit ? 33554432 : 2048;\nint            MaxThreads = std::max(1024, 4 * int(get_hardware_concurrency()));\n\n// The default configuration will attempt to group L3 domains up to 32 threads.\n// This size was found to be a good balance ...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.229
+    },
+    "node_counts": {
+      "left": 3334,
+      "right": 3766
+    },
+    "ast_depth": {
+      "left": 18,
+      "right": 18
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\engine.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\engine.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692568.991327
+  }
+}

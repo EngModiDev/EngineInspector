@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 19,
+    "chunks": 3,
+    "duration_seconds": 0.26
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@37",
+      "before": "namespace Stockfish {\n\n// Returns a static, purely materialistic evaluation of the position from\n// the point of view of the given color. It can be divided by PawnValue to get\n// an approximation of the material advantage on the board in terms of pawns.\nint Eval::simple_eval(const Position& pos, Color c) {\n    return PawnValue * (pos.count<PAWN>(c) - pos.count<PAWN>(~c))\n         + (pos.non_pawn_m...",
+      "after": "namespace Stockfish {\n\n// Returns a static, purely materialistic evaluation of the position from\n// the point of view of the side to move. It can be divided by PawnValue to get\n// an approximation of the material advantage on the board in terms of pawns.\nint Eval::simple_eval(const Position& pos) {\n    Color c = pos.side_to_move();\n    return PawnValue * (pos.count<PAWN>(c) - pos.count<PAWN>(~c)) ...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@128",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.26
+    },
+    "node_counts": {
+      "left": 1113,
+      "right": 1070
+    },
+    "ast_depth": {
+      "left": 16,
+      "right": 17
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\evaluate.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\evaluate.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.03655
+  }
+}

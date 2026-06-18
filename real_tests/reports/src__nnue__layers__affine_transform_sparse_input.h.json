@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 4.0,
+    "matches": 4,
+    "chunks": 4,
+    "duration_seconds": 0.421
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@18",
+      "before": "// Definition of layer AffineTransformSparseInput of NNUE evaluation function",
+      "after": "// Definition of layer AffineTransformSparseInput of NNUE evaluation function",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@20",
+      "before": "#ifndef NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED\n#define NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED\n\n#include <algorithm>\n#include <array>\n#include <cstdint>\n#include <iostream>\n\n#include \"../../bitboard.h\"\n#include \"../nnue_common.h\"\n#include \"affine_transform.h\"\n#include \"simd.h\"\n\n/*\n  This file contains the definition for a fully connected layer (aka affine transform) with...",
+      "after": "#ifndef NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED\n#define NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED\n\n#include <algorithm>\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n\n#include \"../../bitboard.h\"\n#include \"../simd.h\"\n#include \"../nnue_common.h\"\n\n/*\n  This file contains the definition for a fully connected layer (aka affine transform) with block sparse input.\n*/\n\n...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@277",
+      "before": "// #ifndef NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED",
+      "after": "// #ifndef NNUE_LAYERS_AFFINE_TRANSFORM_SPARSE_INPUT_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.421
+    },
+    "node_counts": {
+      "left": 2160,
+      "right": 3181
+    },
+    "ast_depth": {
+      "left": 22,
+      "right": 23
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\layers\\affine_transform_sparse_input.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\layers\\affine_transform_sparse_input.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.8370986
+  }
+}

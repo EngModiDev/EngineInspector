@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "added": 1.0,
+    "removed": 1.0,
+    "modified": 3.0,
+    "matches": 25,
+    "chunks": 5,
+    "duration_seconds": 0.979
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@34",
+      "before": null,
+      "after": "#include \"history.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@36",
+      "before": "#include \"nnue/nnue_common.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@43",
+      "before": "namespace Stockfish {\n\nnamespace Zobrist {\n\nKey psq[PIECE_NB][SQUARE_NB];\nKey enpassant[FILE_NB];\nKey castling[CASTLING_RIGHT_NB];\nKey side, noPawns;\n}\n\nnamespace {\n\nconstexpr std::string_view PieceToChar(\" PNBRQK  pnbrqk\");\n\nconstexpr Piece Pieces[] = {W_PAWN, W_KNIGHT, W_BISHOP, W_ROOK, W_QUEEN, W_KING,\n                            B_PAWN, B_KNIGHT, B_BISHOP, B_ROOK, B_QUEEN, B_KING};\n}  // names...",
+      "after": "namespace Stockfish {\n\nnamespace Zobrist {\n\nKey psq[PIECE_NB][SQUARE_NB];\nKey enpassant[FILE_NB];\nKey castling[CASTLING_RIGHT_NB];\nKey side, noPawns;\n\n}\n\nnamespace {\n\nconstexpr std::string_view PieceToChar(\" PNBRQK  pnbrqk\");\n\nstatic constexpr Piece Pieces[] = {W_PAWN, W_KNIGHT, W_BISHOP, W_ROOK, W_QUEEN, W_KING,\n                                   B_PAWN, B_KNIGHT, B_BISHOP, B_ROOK, B_QUEEN, B_KIN...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@1291",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.979
+    },
+    "node_counts": {
+      "left": 11389,
+      "right": 13986
+    },
+    "ast_depth": {
+      "left": 27,
+      "right": 27
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\position.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\position.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692571.166914
+  }
+}

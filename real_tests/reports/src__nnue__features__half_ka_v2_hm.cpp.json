@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 5.0,
+    "matches": 9,
+    "chunks": 5,
+    "duration_seconds": 0.46
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@18",
+      "before": "//Definition of input features HalfKAv2_hm of NNUE evaluation function",
+      "after": "//Definition of input features HalfKAv2_hm of NNUE evaluation function",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_include@25",
+      "before": "#include \"../nnue_accumulator.h\"",
+      "after": "#include \"../nnue_common.h\"",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@27",
+      "before": "namespace Stockfish::Eval::NNUE::Features {\n\n// Index of a feature for a given king position and another piece on some square\ntemplate<Color Perspective>\ninline IndexType HalfKAv2_hm::make_index(Square s, Piece pc, Square ksq) {\n    return IndexType((int(s) ^ OrientTBL[Perspective][ksq]) + PieceSquareIndex[Perspective][pc]\n                     + KingBuckets[Perspective][ksq]);\n}\n\n// Get a list of ...",
+      "after": "namespace Stockfish::Eval::NNUE::Features {\n\n// Index of a feature for a given king position and another piece on some square\n\nIndexType HalfKAv2_hm::make_index(Color perspective, Square s, Piece pc, Square ksq) {\n    const IndexType flip = 56 * perspective;\n    return (IndexType(s) ^ OrientTBL[ksq] ^ flip) + PieceSquareIndex[perspective][pc]\n         + KingBuckets[int(ksq) ^ flip];\n}\n\n// Get a li...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@87",
+      "before": "// namespace Stockfish::Eval::NNUE::Features",
+      "after": "// namespace Stockfish::Eval::NNUE::Features",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.46
+    },
+    "node_counts": {
+      "left": 773,
+      "right": 489
+    },
+    "ast_depth": {
+      "left": 17,
+      "right": 15
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\features\\half_ka_v2_hm.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\features\\half_ka_v2_hm.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.669582
+  }
+}

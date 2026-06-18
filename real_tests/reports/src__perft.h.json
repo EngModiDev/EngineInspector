@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 0.65
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef PERFT_H_INCLUDED\n#define PERFT_H_INCLUDED\n\n#include <cstdint>\n\n#include \"movegen.h\"\n#include \"position.h\"\n#include \"types.h\"\n#include \"uci.h\"\n\nnamespace Stockfish::Benchmark {\n\n// Utility to verify move generation. All the leaf nodes up\n// to the given depth are generated and counted, and the sum is returned.\ntemplate<bool Root>\nuint64_t perft(Position& pos, Depth depth) {\n\n    StateInfo s...",
+      "after": "#ifndef PERFT_H_INCLUDED\n#define PERFT_H_INCLUDED\n\n#include <cstdint>\n\n#include \"movegen.h\"\n#include \"position.h\"\n#include \"types.h\"\n#include \"uci.h\"\n\nnamespace Stockfish::Benchmark {\n\n// Utility to verify move generation. All the leaf nodes up\n// to the given depth are generated and counted, and the sum is returned.\ntemplate<bool Root>\nuint64_t perft(Position& pos, Depth depth) {\n\n    StateInfo s...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@67",
+      "before": "// PERFT_H_INCLUDED",
+      "after": "// PERFT_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.65
+    },
+    "node_counts": {
+      "left": 393,
+      "right": 348
+    },
+    "ast_depth": {
+      "left": 22,
+      "right": 22
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\perft.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\perft.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.8043966
+  }
+}

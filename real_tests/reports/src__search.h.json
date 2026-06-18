@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 1.408
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef SEARCH_H_INCLUDED\n#define SEARCH_H_INCLUDED\n\n#include <algorithm>\n#include <array>\n#include <atomic>\n#include <cassert>\n#include <cstddef>\n#include <cstdint>\n#include <functional>\n#include <memory>\n#include <string>\n#include <string_view>\n#include <vector>\n\n#include \"misc.h\"\n#include \"movepick.h\"\n#include \"nnue/network.h\"\n#include \"nnue/nnue_accumulator.h\"\n#include \"numa.h\"\n#include \"posit...",
+      "after": "#ifndef SEARCH_H_INCLUDED\n#define SEARCH_H_INCLUDED\n\n#include <algorithm>\n#include <array>\n#include <atomic>\n#include <cassert>\n#include <cstddef>\n#include <cstdint>\n#include <functional>\n#include <map>\n#include <memory>\n#include <string>\n#include <string_view>\n#include <vector>\n\n#include \"history.h\"\n#include \"misc.h\"\n#include \"nnue/network.h\"\n#include \"nnue/nnue_accumulator.h\"\n#include \"numa.h\"\n#...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@349",
+      "before": "// #ifndef SEARCH_H_INCLUDED",
+      "after": "// #ifndef SEARCH_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 1.408
+    },
+    "node_counts": {
+      "left": 1920,
+      "right": 2185
+    },
+    "ast_depth": {
+      "left": 26,
+      "right": 26
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\search.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\search.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692572.0465252
+  }
+}

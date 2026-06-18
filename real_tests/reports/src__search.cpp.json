@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "added": 2.0,
+    "removed": 2.0,
+    "modified": 3.0,
+    "matches": 36,
+    "chunks": 7,
+    "duration_seconds": 1.426
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@35",
+      "before": null,
+      "after": "#include \"bitboard.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@37",
+      "before": null,
+      "after": "#include \"history.h\"",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@41",
+      "before": "#include \"nnue/nnue_common.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@42",
+      "before": "#include \"nnue/nnue_misc.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "namespace_definition@52",
+      "before": "namespace Stockfish {\n\nnamespace TB = Tablebases;\n\nvoid syzygy_extend_pv(const OptionsMap&            options,\n                      const Search::LimitsType&    limits,\n                      Stockfish::Position&         pos,\n                      Stockfish::Search::RootMove& rootMove,\n                      Value&                       v);\n\nusing Eval::evaluate;\nusing namespace Search;\n\nnamespace ...",
+      "after": "namespace Stockfish {\n\nnamespace TB = Tablebases;\n\nvoid syzygy_extend_pv(const OptionsMap&            options,\n                      const Search::LimitsType&    limits,\n                      Stockfish::Position&         pos,\n                      Stockfish::Search::RootMove& rootMove,\n                      Value&                       v);\n\nusing namespace Search;\n\nnamespace {\n\nconstexpr int SEARC...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@2120",
+      "before": "// namespace Stockfish",
+      "after": "// namespace Stockfish",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 1.426
+    },
+    "node_counts": {
+      "left": 18026,
+      "right": 19510
+    },
+    "ast_depth": {
+      "left": 26,
+      "right": 24
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\search.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\search.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692572.0718591
+  }
+}

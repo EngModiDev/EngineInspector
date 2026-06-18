@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 2.0,
+    "matches": 2,
+    "chunks": 2,
+    "duration_seconds": 0.486
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef NETWORK_H_INCLUDED\n#define NETWORK_H_INCLUDED\n\n#include <cstdint>\n#include <iostream>\n#include <optional>\n#include <string>\n#include <tuple>\n#include <utility>\n\n#include \"../memory.h\"\n#include \"../position.h\"\n#include \"../types.h\"\n#include \"nnue_accumulator.h\"\n#include \"nnue_architecture.h\"\n#include \"nnue_feature_transformer.h\"\n#include \"nnue_misc.h\"\n\nnamespace Stockfish::Eval::NNUE {\n\nenu...",
+      "after": "#ifndef NETWORK_H_INCLUDED\n#define NETWORK_H_INCLUDED\n\n#include <cstddef>\n#include <cstdint>\n#include <functional>\n#include <iostream>\n#include <memory>\n#include <optional>\n#include <string>\n#include <string_view>\n#include <tuple>\n\n#include \"../misc.h\"\n#include \"../types.h\"\n#include \"nnue_accumulator.h\"\n#include \"nnue_architecture.h\"\n#include \"nnue_common.h\"\n#include \"nnue_feature_transformer.h\"\n#...",
+      "impact": "low",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.486
+    },
+    "node_counts": {
+      "left": 900,
+      "right": 1127
+    },
+    "ast_depth": {
+      "left": 17,
+      "right": 20
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\network.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\network.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.1543736
+  }
+}

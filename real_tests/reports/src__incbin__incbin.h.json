@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 2.0,
+    "matches": 2,
+    "chunks": 2,
+    "duration_seconds": 0.249
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/**\n * @file incbin.h\n * @author Dale Weiler\n * @brief Utility for including binary files\n *\n * Facilities for including binary files into the current translation unit\n * and making use of them externally in other translation units.\n */",
+      "after": "/**\n * @file incbin.h\n * @author Dale Weiler\n * @brief Utility for including binary files\n *\n * Facilities for including binary files into the current translation unit and\n * making use from them externally in other translation units.\n */",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@8",
+      "before": "#ifndef INCBIN_HDR\n#define INCBIN_HDR\n#include <limits.h>\n#if   defined(__AVX512BW__) || \\\n      defined(__AVX512CD__) || \\\n      defined(__AVX512DQ__) || \\\n      defined(__AVX512ER__) || \\\n      defined(__AVX512PF__) || \\\n      defined(__AVX512VL__) || \\\n      defined(__AVX512F__)\n# define INCBIN_ALIGNMENT_INDEX 6\n#elif defined(__AVX__)      || \\\n      defined(__AVX2__)\n# define INCBIN_ALIGNMENT_...",
+      "after": "#ifndef INCBIN_HDR\n#define INCBIN_HDR\n#include <limits.h>\n#if   defined(__AVX512BW__) || \\\n      defined(__AVX512CD__) || \\\n      defined(__AVX512DQ__) || \\\n      defined(__AVX512ER__) || \\\n      defined(__AVX512PF__) || \\\n      defined(__AVX512VL__) || \\\n      defined(__AVX512F__)\n# define INCBIN_ALIGNMENT_INDEX 6\n#elif defined(__AVX__)      || \\\n      defined(__AVX2__)\n# define INCBIN_ALIGNMENT_...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.249
+    },
+    "node_counts": {
+      "left": 709,
+      "right": 947
+    },
+    "ast_depth": {
+      "left": 13,
+      "right": 15
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\incbin\\incbin.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\incbin\\incbin.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.115759
+  }
+}

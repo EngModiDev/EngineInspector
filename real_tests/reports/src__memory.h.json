@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 0.363
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef MEMORY_H_INCLUDED\n#define MEMORY_H_INCLUDED\n\n#include <algorithm>\n#include <cstddef>\n#include <cstdint>\n#include <memory>\n#include <new>\n#include <type_traits>\n#include <utility>\n\n#include \"types.h\"\n\nnamespace Stockfish {\n\nvoid* std_aligned_alloc(size_t alignment, size_t size);\nvoid  std_aligned_free(void* ptr);\n\n// Memory aligned by page size, min alignment: 4096 bytes\nvoid* aligned_large...",
+      "after": "#ifndef MEMORY_H_INCLUDED\n#define MEMORY_H_INCLUDED\n\n#include <algorithm>\n#include <cstddef>\n#include <cstdint>\n#include <memory>\n#include <new>\n#include <type_traits>\n#include <utility>\n\n#include \"types.h\"\n\n#if defined(_WIN64)\n\n    #if _WIN32_WINNT < 0x0601\n        #undef _WIN32_WINNT\n        #define _WIN32_WINNT 0x0601  // Force to include needed API prototypes\n    #endif\n\n    #if !defined(NOMIN...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@215",
+      "before": "// #ifndef MEMORY_H_INCLUDED",
+      "after": "// #ifndef MEMORY_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.363
+    },
+    "node_counts": {
+      "left": 1798,
+      "right": 2524
+    },
+    "ast_depth": {
+      "left": 23,
+      "right": 23
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\memory.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\memory.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.2656565
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 3.0,
+    "matches": 3,
+    "chunks": 3,
+    "duration_seconds": 0.732
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@18",
+      "before": "#ifndef NNUE_MISC_H_INCLUDED\n#define NNUE_MISC_H_INCLUDED\n\n#include <cstddef>\n#include <string>\n\n#include \"../types.h\"\n#include \"nnue_architecture.h\"\n\nnamespace Stockfish {\n\nclass Position;\n\nnamespace Eval::NNUE {\n\nstruct EvalFile {\n    // Default net name, will use one of the EvalFileDefaultName* macros defined\n    // in evaluate.h\n    std::string defaultName;\n    // Selected net name, either via...",
+      "after": "#ifndef NNUE_MISC_H_INCLUDED\n#define NNUE_MISC_H_INCLUDED\n\n#include <cstddef>\n#include <memory>\n#include <string>\n\n#include \"../misc.h\"\n#include \"../types.h\"\n#include \"nnue_architecture.h\"\n\nnamespace Stockfish {\n\nclass Position;\n\nnamespace Eval::NNUE {\n\n// EvalFile uses fixed string types because it's part of the network structure which must be trivial.\nstruct EvalFile {\n    // Default net name, w...",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@63",
+      "before": "// #ifndef NNUE_MISC_H_INCLUDED",
+      "after": "// #ifndef NNUE_MISC_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.732
+    },
+    "node_counts": {
+      "left": 187,
+      "right": 301
+    },
+    "ast_depth": {
+      "left": 12,
+      "right": 13
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\nnue_misc.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\nnue_misc.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.6330333
+  }
+}

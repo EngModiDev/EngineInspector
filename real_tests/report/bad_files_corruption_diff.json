@@ -1,0 +1,277 @@
+{
+  "summary": {
+    "added": 3.0,
+    "removed": 26.0,
+    "modified": 1.0,
+    "matches": 32,
+    "chunks": 30,
+    "duration_seconds": 0.036
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "#define CONCAT_SQUARE",
+      "before": "#define CONCAT_SQUARE(x) x * x",
+      "after": "#define CONCAT_SQUARE(x) ((x) * (x))",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "ERROR@4",
+      "before": "#define UNCLOSED_MACRO(a\n\nnamespace Stockfish",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@6",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "class@8",
+      "before": "class",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "type_identifier@8",
+      "before": "SearchManager",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@8",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "access_specifier@9",
+      "before": "public",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": ":@9",
+      "before": ":",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "primitive_type@10",
+      "before": "void",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "init_search",
+      "before": "init_search(int depth)",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@10",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "expression_statement@11",
+      "before": "std::cout << \"Starting search depth: \" << depth << std::endl;",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "for@13",
+      "before": "for",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "(@13",
+      "before": "(",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "declaration@13",
+      "before": "int i = 0;",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "binary_expression@13",
+      "before": "i < depth",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": ";@13",
+      "before": ";",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "update_expression@13",
+      "before": "++i",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": ")@13",
+      "before": ")",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@13",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "if",
+      "before": "if (i % 2 == 0) {\n                    std::cout << \"Even node parsed\";\n\n            int memory_leak_pointer = new int[100];\n        }",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "primitive_type@20",
+      "before": "void",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "execute_asm",
+      "before": "execute_asm()",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@20",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "ERROR@21",
+      "before": "__asm__",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "{@21",
+      "before": "{",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "declaration@22",
+      "before": "mov eax, ebx\n                broken_instruction_here\n            }\n        }\n    };",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@2",
+      "before": null,
+      "after": "#include <map>",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_def@5",
+      "before": null,
+      "after": "#define HIGH_RISK_VAL 9999",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "ERROR@7",
+      "before": null,
+      "after": "namespace Stockfish {\n\n    class SearchManager {\n    public:\n\n        void init_search_v2(int depth, double time_limit) {\n            std::cout << \"Advanced Search initiated...\";\n\n            while(true) {\n                if (time_limit < 0.0) {\n                    break;\n\n            constexpr int NEW_CAPACITY = 512;\n        }\n\n    };\n}",
+      "impact": "medium",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.036
+    },
+    "node_counts": {
+      "left": 140,
+      "right": 96
+    },
+    "ast_depth": {
+      "left": 8,
+      "right": 11
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\bad_search_v1.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\bad_search_v2.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692861.6805887
+  }
+}

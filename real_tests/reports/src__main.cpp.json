@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "added": 1.0,
+    "removed": 1.0,
+    "modified": 3.0,
+    "matches": 11,
+    "chunks": 5,
+    "duration_seconds": 0.317
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "preproc_include@19",
+      "before": null,
+      "after": "#include <memory>",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_include@23",
+      "before": "#include \"types.h\"",
+      "after": "#include \"tune.h\"",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "preproc_include@25",
+      "before": "#include \"tune.h\"",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "int main",
+      "before": "int main(int argc, char* argv[]) {\n\n    std::cout << engine_info() << std::endl;\n\n    Bitboards::init();\n    Position::init();\n\n    UCIEngine uci(argc, argv);\n\n    Tune::init(uci.engine_options());\n\n    uci.loop();\n\n    return 0;\n}",
+      "after": "int main(int argc, char* argv[]) {\n    std::cout << engine_info() << std::endl;\n\n    Bitboards::init();\n    Position::init();\n\n    auto uci = std::make_unique<UCIEngine>(argc, argv);\n\n    Tune::init(uci->engine_options());\n\n    uci->loop();\n\n    return 0;\n}",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.317
+    },
+    "node_counts": {
+      "left": 152,
+      "right": 160
+    },
+    "ast_depth": {
+      "left": 9,
+      "right": 11
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\main.cpp",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\main.cpp",
+      "language": "cpp"
+    },
+    "timestamp": 1781692569.183627
+  }
+}

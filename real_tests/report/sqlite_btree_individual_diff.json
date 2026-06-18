@@ -1,0 +1,989 @@
+{
+  "summary": {
+    "added": 32.0,
+    "removed": 2.0,
+    "modified": 85.0,
+    "matches": 0,
+    "chunks": 119,
+    "duration_seconds": 0.769
+  },
+  "chunks": [
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n#if defined(__GNUC__) && __GNUC__>=11\n# pragma GCC diagnostic push\n# pragma GCC diagnostic ignored \"-Wstringop-overread\"\n# pragma GCC diagnostic ignored \"-Wstringop-overflow\"\n#endif\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "#define SHARED_LOCK_TRACE(X,MSG,TAB,TYPE)\n\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n#if 0\n\nstatic void sharedLockTrace(\n    BtShared *pBt,\n    const char *zMsg,\n    int iRoot,\n    int eLockType\n){\n    BtLock *pLock;\n    if( iRoot>0 ){\n        printf(\"%s-%p %u%s:\", zMsg, pBt, iRoot, eLockType==READ_LOCK?\"R\":\"W\");\n    }else{\n        printf(\"%s-%p:\", zMsg, pBt);\n    }\n    for(pLock=pBt->pLock; pLock; pLock=pLock->pNext){\n        printf(\" %p/%u%s\", pLock->pBtree, pLock->iTable,\n    ",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n    SHARED_LOCK_TRACE(pBtree->pBt,\"hasLock\",iRoot,eLockType);\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    SHARED_LOCK_TRACE(pBt,\"setLock\", iTable, eLock);\n\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    SHARED_LOCK_TRACE(pBt, \"clearAllLocks\", 0, 0);\n\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n    SHARED_LOCK_TRACE(pBt, \"downgradeLocks\", 0, 0);\n\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pKey = sqlite3Malloc( pCur->nKey + 9 + 8 );\n",
+      "after": "        pKey = sqlite3Malloc( ((i64)pCur->nKey) + 9 + 8 );\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        sqlite3VdbeRecordUnpack(pKeyInfo, (int)nKey, pKey, pIdxKey);\n",
+      "after": "        sqlite3VdbeRecordUnpack((int)nKey, pKey, pIdxKey);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pCur->hints = x;\n",
+      "after": "    pCur->hints = (u8)x;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    assert( nPayload>=0 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return nPayload;\n",
+      "after": "        return (int)nPayload;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        surplus = minLocal + (nPayload - minLocal)%(pPage->pBt->usableSize-4);\n        return ( surplus <= maxLocal ) ? surplus : minLocal;\n",
+      "after": "        surplus = (int)(minLocal +(nPayload - minLocal)%(pPage->pBt->usableSize-4));\n        return (surplus <= maxLocal) ? surplus : minLocal;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    u32 nPayload;\n",
+      "after": "    u64 nPayload;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "        nPayload &= 0xffffffff;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pInfo->nPayload = nPayload;\n",
+      "after": "    pInfo->nPayload = (u32)nPayload;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    assert( pPage->maxLocal <= BT_MAX_LOCAL );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pInfo->nSize = nPayload + (u16)(pIter - pCell);\n",
+      "after": "        pInfo->nSize = (u16)nPayload + (u16)(pIter - pCell);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    assert( nPayload>=0 );\n    assert( pPage->maxLocal <= BT_MAX_LOCAL );\n",
+      "impact": "medium",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pInfo->nSize = nPayload + (u16)(pIter - pCell);\n",
+      "after": "        pInfo->nSize = (u16)nPayload + (u16)(pIter - pCell);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "static int freeSpace(MemPage *pPage, u16 iStart, u16 iSize){\n    u16 iPtr;\n    u16 iFreeBlk;\n",
+      "after": "static int freeSpace(MemPage *pPage, int iStart, int iSize){\n    int iPtr;\n    int iFreeBlk;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    u8 nFrag = 0;\n    u16 iOrigSize = iSize;\n    u16 x;\n    u32 iEnd = iStart + iSize;\n",
+      "after": "    int nFrag = 0;\n    int iOrigSize = iSize;\n    int x;\n    int iEnd = iStart + iSize;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( CORRUPT_DB || iEnd <= pPage->pBt->usableSize );\n",
+      "after": "    assert( CORRUPT_DB || iEnd <= (int)pPage->pBt->usableSize );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( CORRUPT_DB || iStart<=pPage->pBt->usableSize-4 );\n",
+      "after": "    assert( CORRUPT_DB || iStart<=(int)pPage->pBt->usableSize-4 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        if( iFreeBlk>pPage->pBt->usableSize-4 ){\n",
+      "after": "        if( iFreeBlk>(int)pPage->pBt->usableSize-4 ){\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            if( iEnd > pPage->pBt->usableSize ){\n",
+      "after": "            if( iEnd > (int)pPage->pBt->usableSize ){\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        data[hdr+7] -= nFrag;\n",
+      "after": "        data[hdr+7] -= (u8)nFrag;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        put2byte(&data[iStart+2], iSize);\n",
+      "after": "        assert( iSize>=0 && iSize<=0xffff );\n        put2byte(&data[iStart+2], (u16)iSize);\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pPage->cellOffset = pPage->hdrOffset + 8 + pPage->childPtrSize;\n",
+      "after": "    pPage->cellOffset = (u16)(pPage->hdrOffset + 8 + pPage->childPtrSize);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    u8 hdr = pPage->hdrOffset;\n    u16 first;\n",
+      "after": "    int hdr = pPage->hdrOffset;\n    int first;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pPage->cellOffset = first;\n",
+      "after": "    pPage->cellOffset = (u16)first;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    UNUSED_PARAMETER( pBt );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pBt->nReserveWanted = nReserve;\n",
+      "after": "    pBt->nReserveWanted = (u8)nReserve;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    if( x==nReserve && (pageSize==0 || (u32)pageSize==pBt->pageSize) ){\n        sqlite3BtreeLeave(p);\n        return SQLITE_OK;\n    }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        p->pBt->btsFlags |= BTS_SECURE_DELETE*newFlag;\n",
+      "after": "        p->pBt->btsFlags |= (u16)(BTS_SECURE_DELETE*newFlag);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "#ifdef SQLITE_EXPERIMENTAL_PRAGMA_20251114\n\n    if( pBt->pPage1==0 && wrflag ){\n        sqlite3_file *fd = sqlite3PagerFile(pPager);\n        char *aFcntl[3] = {0,0,0};\n        aFcntl[1] = \"experimental_pragma_20251114\";\n        assert( wrflag==1 || wrflag==2 );\n        aFcntl[2] = (wrflag==1 ? \"1\" : \"2\");\n        sqlite3OsFileControlHint(fd, SQLITE_FCNTL_PRAGMA, (void*)aFcntl);\n        sqlite3_fre",
+      "impact": "medium",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "#if defined(SQLITE_ENABLE_SETLK_TIMEOUT)\n    if( rc==SQLITE_BUSY_TIMEOUT ){\n\n        break;\n    }\n#endif\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "#ifdef SQLITE_DEBUG\n\nint sqlite3BtreeClosesWithCursor(\n    Btree *pBtree,\n    BtCursor *pCur\n){\n    BtShared *pBt = pBtree->pBt;\n    if( (pBt->openFlags & BTREE_SINGLE)==0 ) return 0;\n    if( pBt->pCursor!=pCur ) return 0;\n    if( pCur->pNext!=0 ) return 0;\n    if( pCur->pBtree!=pBtree ) return 0;\n    return 1;\n}\n#endif\n\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( offset+amt <= pCur->info.nPayload );\n",
+      "after": "    assert( (u64)offset+(u64)amt <= (u64)pCur->info.nPayload );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            int nOvfl = (pCur->info.nPayload-pCur->info.nLocal+ovflSize-1)/ovflSize;\n",
+      "after": "            i64 nOvfl = pCur->info.nPayload;\n            testcase( nOvfl - pCur->info.nLocal + ovflSize - 1 > 0xffffffffU );\n            nOvfl = (nOvfl - pCur->info.nLocal + ovflSize-1)/ovflSize;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                Pgno *aNew = (Pgno*)sqlite3Realloc(\n                    pCur->aOverflow, nOvfl*2*sizeof(Pgno)\n                );\n",
+      "after": "                Pgno *aNew;\n                if( sqlite3FaultSim(413) ){\n                    aNew = 0;\n                }else{\n                    aNew = (Pgno*)sqlite3Realloc(pCur->aOverflow, nOvfl*2*sizeof(Pgno));\n                }\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n            assert( pCur->aOverflow[0]==nextPage\n                || pCur->aOverflow[0]==0\n                || CORRUPT_DB );\n            assert( pCur->aOverflow[0]!=0 || pCur->aOverflow[offset/ovflSize]==0 );\n",
+      "impact": "medium",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        if( rc && nextPage>pBt->nPage ) rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "            if( eOp!=0\n                && (sqlite3PagerPageRefcount(pDbPage)!=1\n                    || NEVER(((MemPage*)sqlite3PagerGetExtra(pDbPage))->isInit))\n                && sqlite3FaultSim(411)==SQLITE_OK\n            ){\n                sqlite3PagerUnref(pDbPage);\n                return SQLITE_CORRUPT_PAGE(pPage);\n            }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "int sqlite3BtreeIsEmpty(BtCursor *pCur, int *pRes){\n    int rc;\n\n    assert( cursorOwnsBtShared(pCur) );\n    assert( sqlite3_mutex_held(pCur->pBtree->db->mutex) );\n    if( NEVER(pCur->eState==CURSOR_VALID) ){\n        *pRes = 0;\n        return SQLITE_OK;\n    }\n    rc = moveToRoot(pCur);\n    if( rc==SQLITE_EMPTY ){\n        *pRes = 1;\n        rc = SQLITE_OK;\n    }else{\n        *pRes = 0;\n    }\n    re",
+      "impact": "medium",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "#ifdef SQLITE_DEBUG\n\n    int ii;\n    for(ii=0; ii<pCur->iPage; ii++){\n        assert( pCur->aiIdx[ii]==pCur->apPage[ii]->nCell );\n    }\n    assert( pCur->ix==pCur->pPage->nCell-1 || CORRUPT_DB );\n    testcase( pCur->ix!=pCur->pPage->nCell-1 );\n\n    assert( pCur->pPage->leaf );\n#endif\n    *pRes = 0;\n    return SQLITE_OK;\n",
+      "after": "        assert( cursorIsAtLastEntry(pCur) || CORRUPT_DB );\n        *pRes = 0;\n        return SQLITE_OK;\n",
+      "impact": "medium",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "                assert( cursorIsAtLastEntry(pCur) || CORRUPT_DB );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    BtCursor *pCur,\n",
+      "after": "    MemPage *pPage,\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "delete",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    MemPage *pPage = pCur->pPage;\n",
+      "after": null,
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            && (c = indexCellCompare(pCur, pCur->ix, pIdxKey, xRecordCompare))<=0\n",
+      "after": "            && (c = indexCellCompare(pCur->pPage,pCur->ix,pIdxKey,xRecordCompare))<=0\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            && indexCellCompare(pCur, 0, pIdxKey, xRecordCompare)<=0\n",
+      "after": "            && indexCellCompare(pCur->pPage, 0, pIdxKey, xRecordCompare)<=0\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            pCur->curFlags &= ~BTCF_ValidOvfl;\n",
+      "after": "            pCur->curFlags &= ~(BTCF_ValidOvfl|BTCF_AtLast);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                pCellKey = sqlite3Malloc( nCell+nOverrun );\n",
+      "after": "                pCellKey = sqlite3Malloc( (u64)nCell+(u64)nOverrun );\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    if( NEVER(pCur->eState!=CURSOR_VALID) ) return -1;\n",
+      "after": "    if( pCur->eState!=CURSOR_VALID ) return 0;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        n *= pCur->apPage[i]->nCell;\n",
+      "after": "        n *= pCur->apPage[i]->nCell+1;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( pPage->isInit );\n",
+      "after": "    if( sqlite3FaultSim(412) ) pPage->isInit = 0;\n    if( !pPage->isInit ){\n        return SQLITE_CORRUPT_BKPT;\n    }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        if( n<4 ) n = 4;\n",
+      "after": "        if( n<4 ){\n            n = 4;\n            pPayload[nPayload] = 0;\n        }\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    if( NEVER(j>(u32)usableSize) ){ j = 0; }\n",
+      "after": "    if( j>(u32)usableSize ){ j = 0; }\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    for(k=0; ALWAYS(k<NB*2) && pCArray->ixNx[k]<=i; k++){}\n",
+      "after": "    assert( pCArray->ixNx[NB*2-1]>i );\n    for(k=0; pCArray->ixNx[k]<=i; k++){}\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pPg->nCell = nCell;\n",
+      "after": "    assert( nCell < 10922 );\n    pPg->nCell = (u16)nCell;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    for(k=0; ALWAYS(k<NB*2) && pCArray->ixNx[k]<=i ; k++){}\n",
+      "after": "    assert( pCArray->ixNx[NB*2-1]>i );\n    for(k=0; pCArray->ixNx[k]<=i ; k++){}\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    ) ) goto editpage_fail;\n",
+      "after": "        )\n    ){\n        goto editpage_fail;\n    }\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    pPg->nCell = nNew;\n",
+      "after": "    assert( nNew < 10922 );\n    pPg->nCell = (u16)nNew;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "        b.ixNx[NB*2-1] = 0x7fffffff;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    int szScratch;\n",
+      "after": "    u64 szScratch;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    memset(&b, 0, sizeof(b));\n",
+      "after": "    assert( sizeof(b) - sizeof(b.ixNx) == offsetof(CellArray,ixNx) );\n    memset(&b, 0, sizeof(b)-sizeof(b.ixNx[0]));\n    b.ixNx[NB*2-1] = 0x7fffffff;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "            rc = SQLITE_CORRUPT_PAGE(pOld);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "                rc = SQLITE_CORRUPT_PAGE(pOld);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        MemPage *pOld = (nNew>nOld ? apNew : apOld)[nOld-1];\n",
+      "after": "        MemPage *pOld;\n        if( nNew>nOld ){\n            pOld = apNew[nOld-1];\n        }else{\n            pOld = apOld[nOld-1];\n        }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        for(k=0; ALWAYS(k<NB*2) && b.ixNx[k]<=j; k++){}\n",
+      "after": "        assert( b.ixNx[NB*2-1]>j );\n        for(k=0; b.ixNx[k]<=j; k++){}\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            return SQLITE_CORRUPT_BKPT;\n",
+      "after": "            return SQLITE_CORRUPT_PAGE(pCur->pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "            rc = SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "            rc = SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            return SQLITE_CORRUPT_BKPT;\n",
+      "after": "            return SQLITE_CORRUPT_PGNO(pCur->pgnoRoot);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                x2.nData = pX->nKey;\n",
+      "after": "                x2.nData = (int)pX->nKey;  assert( pX->nKey<=0x7fffffff );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "            rc = SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        if( szNew<4 ) szNew = 4;\n",
+      "after": "        if( szNew<4 ){\n            szNew = 4;\n            newCell[3] = 0;\n        }\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            return SQLITE_CORRUPT_BKPT;\n",
+      "after": "            return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                return SQLITE_CORRUPT_BKPT;\n",
+      "after": "                return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                return SQLITE_CORRUPT_BKPT;\n",
+      "after": "                return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pCur->curFlags &= ~BTCF_ValidNKey;\n",
+      "after": "        pCur->curFlags &= ~(BTCF_ValidNKey|BTCF_ValidOvfl);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pCur->curFlags &= ~(BTCF_ValidNKey);\n",
+      "after": "        pCur->curFlags &= ~(BTCF_ValidNKey|BTCF_ValidOvfl);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        *(aOut++) = pSrc->info.nPayload;\n",
+      "after": "        *(aOut++) = (u8)pSrc->info.nPayload;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PAGE(pSrc->pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pBt->nPreformatSize = nIn + (aOut - pBt->pTmpSpace);\n",
+      "after": "        pBt->nPreformatSize = nIn + (int)(aOut - pBt->pTmpSpace);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        pBt->nPreformatSize = nOut + (aOut - pBt->pTmpSpace);\n",
+      "after": "        pBt->nPreformatSize = (int)nOut + (int)(aOut - pBt->pTmpSpace);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                return SQLITE_CORRUPT_BKPT;\n",
+      "after": "                return SQLITE_CORRUPT_PAGE(pSrc->pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                Pgno pgnoNew;\n",
+      "after": "                Pgno pgnoNew = 0;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            return SQLITE_CORRUPT_BKPT;\n",
+      "after": "            return SQLITE_CORRUPT_PGNO(pCur->pgnoRoot);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        if( pCell<&pLeaf->aData[4] ) return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        if( pCell<&pLeaf->aData[4] ) return SQLITE_CORRUPT_PAGE(pLeaf);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "            return SQLITE_CORRUPT_BKPT;\n",
+      "after": "            return SQLITE_CORRUPT_PGNO(pgnoRoot);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "                rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "                rc = SQLITE_CORRUPT_PGNO(pgnoRoot);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PGNO(pgno);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        rc = SQLITE_CORRUPT_BKPT;\n",
+      "after": "        rc = SQLITE_CORRUPT_PAGE(pPage);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        return SQLITE_CORRUPT_BKPT;\n",
+      "after": "        return SQLITE_CORRUPT_PGNO(iTable);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( iPg<=pCheck->nPage && sizeof(pCheck->aPgRef[0])==1 );\n",
+      "after": "    assert( pCheck->aPgRef!=0 );\n    assert( iPg<=pCheck->nCkPage && sizeof(pCheck->aPgRef[0])==1 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    assert( iPg<=pCheck->nPage && sizeof(pCheck->aPgRef[0])==1 );\n",
+      "after": "    assert( pCheck->aPgRef!=0 );\n    assert( iPg<=pCheck->nCkPage && sizeof(pCheck->aPgRef[0])==1 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    if( iPage>pCheck->nPage || iPage==0 ){\n",
+      "after": "    if( iPage>pCheck->nCkPage || iPage==0 ){\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "        if( rc==SQLITE_IOERR_NOMEM ) pCheck->rc = SQLITE_NOMEM;\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    if( pPage->leaf || pPage->intKey==0 ){\n        pCheck->nRow += nCell;\n    }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "            doCoverageCheck = 0;\n            continue;\n        }\n        if( info.nPayload && info.pPayload[0]<2 ){\n            checkAppendMsg(pCheck, \"Bad cell header size\");\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "        assert( heap!=0 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    Mem *aCnt,\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    assert( aCnt!=0 );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    sCheck.nPage = btreePagecount(sCheck.pBt);\n",
+      "after": "    sCheck.nCkPage = btreePagecount(sCheck.pBt);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    if( sCheck.nPage==0 ){\n",
+      "after": "    if( sCheck.nCkPage==0 ){\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    sCheck.aPgRef = sqlite3MallocZero((sCheck.nPage / 8)+ 1);\n",
+      "after": "    sCheck.aPgRef = sqlite3MallocZero((sCheck.nCkPage / 8)+ 1);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "    if( i<=sCheck.nPage ) setPageReferenced(&sCheck, i);\n",
+      "after": "    if( i<=sCheck.nCkPage ) setPageReferenced(&sCheck, i);\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        i64 notUsed;\n        if( aRoot[i]==0 ) continue;\n",
+      "after": "        sCheck.nRow = 0;\n        if( aRoot[i] ){\n            i64 notUsed;\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    sqlite3MemSetArrayInt64(aCnt, i, sCheck.nRow);\n    }\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": "        for(i=1; i<=sCheck.nPage && sCheck.mxErr; i++){\n",
+      "after": "        for(i=1; i<=sCheck.nCkPage && sCheck.mxErr; i++){\n",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    assert( nBytes==0 || nBytes==sizeof(Schema) );\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "    UNUSED_PARAMETER(p);\n",
+      "impact": "low",
+      "semantic_change": null
+    },
+    {
+      "type": "insert",
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "before": null,
+      "after": "\n#if defined(__GNUC__) && __GNUC__>=11\n# pragma GCC diagnostic pop\n#endif\n",
+      "impact": "low",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "c",
+    "parser_mode": "tree-sitter",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.769
+    },
+    "node_counts": {
+      "left": 1,
+      "right": 1
+    },
+    "ast_depth": {
+      "left": 1,
+      "right": 1
+    },
+    "left": {
+      "path": "D:\\real_tests\\sqlite_v_old\\btree.c",
+      "language": "c"
+    },
+    "right": {
+      "path": "D:\\real_tests\\sqlite_v_new\\btree.c",
+      "language": "c"
+    },
+    "timestamp": 1781689935.3296335
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "added": 0.0,
+    "removed": 0.0,
+    "modified": 4.0,
+    "matches": 4,
+    "chunks": 4,
+    "duration_seconds": 0.506
+  },
+  "chunks": [
+    {
+      "type": "modify",
+      "path": "comment@0",
+      "before": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2024 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "after": "/*\n  Stockfish, a UCI chess playing engine derived from Glaurung 2.1\n  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)\n\n  Stockfish is free software: you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation, either version 3 of the License, or\n  (at your option) any later version.\n\n  Stockfish is...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@18",
+      "before": "// Input features and network structure used in NNUE evaluation function",
+      "after": "// Input features and network structure used in NNUE evaluation function",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "preproc_ifdef@20",
+      "before": "#ifndef NNUE_ARCHITECTURE_H_INCLUDED\n#define NNUE_ARCHITECTURE_H_INCLUDED\n\n#include <cstdint>\n#include <cstring>\n#include <iosfwd>\n\n#include \"features/half_ka_v2_hm.h\"\n#include \"layers/affine_transform.h\"\n#include \"layers/affine_transform_sparse_input.h\"\n#include \"layers/clipped_relu.h\"\n#include \"layers/sqr_clipped_relu.h\"\n#include \"nnue_common.h\"\n\nnamespace Stockfish::Eval::NNUE {\n\n// Input featu...",
+      "after": "#ifndef NNUE_ARCHITECTURE_H_INCLUDED\n#define NNUE_ARCHITECTURE_H_INCLUDED\n\n#include <cstdint>\n#include <cstring>\n#include <iosfwd>\n\n#include \"features/half_ka_v2_hm.h\"\n#include \"features/full_threats.h\"\n#include \"layers/affine_transform.h\"\n#include \"layers/affine_transform_sparse_input.h\"\n#include \"layers/clipped_relu.h\"\n#include \"layers/sqr_clipped_relu.h\"\n#include \"nnue_common.h\"\n\nnamespace Stoc...",
+      "impact": "cosmetic",
+      "semantic_change": null
+    },
+    {
+      "type": "modify",
+      "path": "comment@136",
+      "before": "// #ifndef NNUE_ARCHITECTURE_H_INCLUDED",
+      "after": "// #ifndef NNUE_ARCHITECTURE_H_INCLUDED",
+      "impact": "cosmetic",
+      "semantic_change": null
+    }
+  ],
+  "metadata": {
+    "language": "cpp",
+    "parser_mode": "hybrid",
+    "parser": "hybrid",
+    "timing": {
+      "total_seconds": 0.506
+    },
+    "node_counts": {
+      "left": 1074,
+      "right": 1377
+    },
+    "ast_depth": {
+      "left": 20,
+      "right": 20
+    },
+    "left": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_17\\src\\nnue\\nnue_architecture.h",
+      "language": "cpp"
+    },
+    "right": {
+      "path": "D:\\real_tests\\cpp_targets\\stockfish_18\\src\\nnue\\nnue_architecture.h",
+      "language": "cpp"
+    },
+    "timestamp": 1781692570.2025084
+  }
+}
