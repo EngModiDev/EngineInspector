@@ -110,8 +110,8 @@ You can explore the `real_tests/` directory to inspect the exact targets and out
 
 ### 💻 Hardware Baseline (Ultra-Low Spec Validation)
 To prove that our hybrid architecture (`Rust` FFI + `PackedVec` memory cache layouts) is built for efficiency, these benchmarks were **not** run on an expensive cloud server. They were executed locally on a highly constrained, entry-level developer machine:
-*   **CPU:** 2 Cores / 4 Threads (Intel Core i3 baseline architecture)
-*   **RAM:** 4GB DDR4 Memory
+*   **CPU:** 2 Cores / 4 Threads (Intel Core i5 baseline architecture)
+*   **RAM:** 4GB DDR3 Memory
 *   **Performance:** Even under these hardware constraints, the semantic diffing of SQLite's `btree.c` (over 10,000 lines of highly complex C logic) finishes in **0.769 seconds** with an absolute peak RAM footprint that never throttles the host OS.
 
 ### 🚀 Verify It Yourself (Step-by-Step)
@@ -122,7 +122,7 @@ We have included architectural visual guides inside the `real_tests/` directory 
 2.  **The "Zero-Config" Lazy Bootstrap:** Open your terminal or PowerShell inside that folder and run the command. The engine will instantly detect the environment and pull down the platform-specific dependencies into the local `libs/` folder automatically.
 3.  **Run the Benchmark Command:**
     ```bash
-    ./engineinspector compare-paths real_tests/sqlite_v_old/ real_tests/sqlite_v_new/ --out-dir real_tests/reports/
+    ./engineinspector.exe compare-paths real_tests/sqlite_v_old/ real_tests/sqlite_v_new/ --out-dir real_tests/reports/
     ```
 
 ## 6. Deep Technical Features & Architecture
