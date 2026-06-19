@@ -27,7 +27,7 @@
 *   [8. First-Run & Offline Integrity](#8-first-run--offline-integrity)
 *   [9. Security & Transparency (False Positives)](#9-security--transparency-false-positives)
 *   [10. Advanced FAQ](#10-advanced-faq)
-*   [11. Contact & Support](#11-contact--support)
+*   [11. Contact & Support](#11-contact-feedback--responsive-support)
 
 ***
 
@@ -281,58 +281,113 @@ As EngineInspector is an independently developed, closed-source utility, you may
 
 ***
 
+Here is the complete, high-impact **Section 10. Advanced FAQ** for your `README.md` file. It is written in a highly professional, developer-friendly tone and incorporates all the technical and operational details from our conversation. You can copy and paste this directly into your GitHub repository.
+
+***
+
 ## 10. Advanced FAQ
 
 <details>
-<summary><b>💬 Click to expand: Advanced FAQ</b></summary>
+<summary><b>💬 Click to expand: Section A — Core Usability & Project Lifecycle (Basic FAQs)</b></summary>
 <br>
 
-### Q: How does the PyO3 FFI manage memory without GIL-based overhead?
-A: To prevent Python's Global Interpreter Lock (GIL) from slowing down performance, the Rust core operates on thread-safe, atomically referenced structures (`Arc`). The Python layer interacts with the Rust backend using opaque `u64` handles managed by a global, mutex-protected `HandleManager`. When Python triggers a heavy task (such as `build_callgraph_from_cfg_py`), it passes these handles across the FFI boundary, releases the GIL, and allows the Rust core to run parallel processes on Rust-managed memory threads.
+### Q: Is EngineInspector free? What is its licensing model?
+A: Yes, EngineInspector is **100% free for individual developers, personal use, and academic study**. However, the core source code is proprietary/closed-source to protect highly specialized algorithmic IP. It utilizes a custom developer-friendly license that allows unrestricted personal use but prohibits commercial white-labeling, redistribution as a hosted service, or uncredited packaging within proprietary enterprise SaaS pipelines.
 
-### Q: What bytecode structure is executed by the Rule VM?
-A: The Rule VM executes a stack-based instruction set defined by the `OpCode` enum. When a rule is loaded, the parser extracts literals into a structured `ConstantPool` to avoid string allocations during VM execution. Comparison operations push constant indices and evaluate variables against the current node's AST properties using a lightweight `HostApi` trait. The VM runs on a strict evaluation budget to protect against performance degradation or infinite loops:
-```rust
-let check_budget = |instr_count: u64, start: Instant| {
-    if instr_count > self.budget.max_instructions {
-        return Err("instruction budget exceeded");
-    }
-    if start.elapsed() > self.budget.max_duration {
-        return Err("time budget exceeded");
-    }
-    Ok(())
-};
-```
+### Q: Why are there no official pre-compiled binaries for macOS?
+A: Stable execution and user confidence are our highest priorities. EngineInspector has been fully tested and verified on Windows 10/8 and Linux (Ubuntu environments) using low-spec, clean target devices to guarantee performance. We choose to support only the operating systems we can personally audit to ensure stable execution.
 
-### Q: How does EngineInspector integrate into CI/CD pipelines?
-A: EngineInspector is designed to integrate into automated pipelines. The CLI commands return standard, reliable exit codes (`0` for clean execution, `1` for failures, and `130` for user interrupts). The `--out` flag writes structured reports directly to JSON, which can be easily parsed by downstream step processors to enforce commit validation rules:
-```json
-{
-  "summary": {
-    "added": 12.0,
-    "removed": 2.0,
-    "modified": 5.0,
-    "matches": 142,
-    "chunks": 19,
-    "duration_seconds": 0.142
-  },
-  "metadata": {
-    "language": "cpp",
-    "node_counts": { "left": 1402, "right": 1548 },
-    "ast_depth": { "left": 18, "right": 21 }
-  }
-}
-```
+### Q: How do I install and run the engine on a highly secure, air-gapped machine without internet access?
+A: You can bypass the dynamic online bootstrap process entirely with a manual setup:
+1.  Download the verified external libraries archive (`main.zip`) from our public repository [EngineInspector-libs](https://github.com/EngModiDev/EngineInspector-libs) on an internet-enabled device (where you can audit the files yourself).
+2.  Extract the archive, create a folder named `libs` in the same directory as your `engineinspector` binary, and place the extracted files inside it.
+3.  Run the binary. It will detect the local library files and run completely offline with no network initialization.
+
+### Q: Why does GitHub display empty source code zip/tar.gz files in the Release assets?
+A: This is due to default GitHub Release packaging policies, which append standard source archives even for closed-source releases. These files are empty. You should download only the raw executable binaries (`engineinspector.exe` or `engineinspector`) and the companion `MANIFEST.json` file.
+
+### Q: How do I verify that my downloaded binaries have not been tampered with?
+A: You can calculate your local file's SHA-256 signature and compare it to the hashes provided in the `MANIFEST.json` file:
+*   **Windows (PowerShell):**
+    ```powershell
+    Get-FileHash -Path ".\engineinspector.exe" -Algorithm SHA256
+    ```
+*   **Linux (Terminal):**
+    ```bash
+    sha256sum ./engineinspector
+    ```
+</details>
+
+<details>
+<summary><b>💬 Click to expand: Section B — Languages, Metrics &amp; Diagnostics (Technical FAQs)</b></summary>
+<br>
+
+### Q: Does EngineInspector support modern standards like Python 3.12+ and C++20?
+A: Yes. Because our parsing layer combines modern Tree-Sitter grammars with real-time `libclang` indexing, EngineInspector supports modern language features. It parses C++17/20 constructs (including template specializations) and modern Python features (such as structural pattern matching and async definitions) without failing.
+
+### Q: Why does my report sometimes output `"semantic_change": null`?
+A: This is **not a bug**. We prioritize mathematical precision over unstable heuristics. For complex syntactic mutations, the engine currently prints `null` rather than guessing. We are actively engineering a complete semantic expression mapper for the upcoming release to our signature high standards.
+
+### Q: What is the "Squashed Churn Score" and how is it used?
+A: The churn score is calculated in `_churn_score` (`metrics.py`). It measures the rate of change between two revisions of a file:
+$$\text{Churn} = \tanh\left(1.5 \times \left(0.5 \cdot \Delta_{\text{Lines}} + 0.35 \cdot \Delta_{\text{Tokens}} + 0.15 \cdot \Delta_{\text{Cyclomatic}}\right)\right)$$
+This formula evaluates line modifications ($\Delta_{\text{Lines}}$), token mutations ($\Delta_{\text{Tokens}}$), and control-flow changes ($\Delta_{\text{Cyclomatic}}$), squashing the result to a standardized $0.0$ to $1.0$ range to represent the structural impact of the edit.
+
+### Q: What are the target metrics evaluated by the BehaviorDetector and RiskClassifier?
+A: The `BehaviorDetector` (`analysis/behavior_detector.py`) checks for semantic changes in performance-critical code. It uses precompiled regex matrices to track changes in stopping criteria (e.g., search timeouts, ponder states), time management clocks, move ordering, aspiration windows, and multithreading primitives (`std::mutex`, `std::atomic`).
+The `RiskClassifier` (`analysis/risk_classifier.py`) evaluates structural modifications to classify edits on a risk scale (`safe`, `warning`, `dangerous`, `breaking-change`). It uses a custom offset exponential curve to prevent standard neutral bias:
+$$\text{Score} = 1.0 - 2^{-\max(0.0, \text{raw})}$$
+This maps a raw score of 0 directly to 0 (categorized as low-risk/info), while maintaining a smooth saturation curve toward 1.0 as risk signals accumulate.
+
+### Q: How does EngineInspector handle malformed or syntax-invalid source files?
+A: We have tested the parsing pipeline against highly malformed C++ and Python files. The structural parser handles recovery gracefully. It utilizes Tree-Sitter's error-recovery nodes to isolate syntax errors, allowing the engine to align and diff the remaining structural elements.
+
+### Q: What makes this different from Difftastic or CodeQL?
+A: The tools serve entirely different purposes in the analysis ecosystem:
+*   **Difftastic** is a syntax-aware text-difference viewer. It highlights syntax-token edits but does not perform control flow analysis or track execution behavior.
+*   **CodeQL** is a static analysis engine designed to write queries against a custom database representation of your code. It is highly extensible but requires building a database and does not focus on diffing.
+*   **EngineInspector** is a specialized, hybrid semantic diffing and behavioral auditing tool. It normalizes code, constructs SSA control flow representation, maps AST subtrees using cryptographic BLAKE3 fingerprints, and runs targeted rules within a sandboxed bytecode VM. This architecture is optimized to detect structural, risk-based, and performance-critical changes across revisions.
+
+### Q: Does EngineInspector ever send my source code, hashes, or analysis results over the network? How can I trust that the tool is truly offline?
+A: No, EngineInspector **never transmits your intellectual property**. After the one-time library bootstrap (which only downloads platform libraries from our public `EngineInspector-libs` repository), the engine operates with **zero outbound network connections**. We formalize this commitment in our `SECURITY_LICENSE.md` file. You are strongly encouraged to verify this yourself using any network monitoring tool (Wireshark, Little Snitch, firewall logs). If you ever detect unexpected network activity, report it immediately as a critical security bug.
+</details>
+
+<details>
+<summary><b>💬 Click to expand: Section C — SSA, CFG &amp; Memory Allocation (Expert FAQs)</b></summary>
+<br>
+
+### Q: How does the SSA builder handle loops and cyclic control flow?
+A: Our `SsaBuilder` (`dfa/ssa.rs`) handles cyclic paths natively. It identifies loop blocks and maps back-edges as pred/succ references in our CFG. When variables are modified across loop boundaries, the iterated dominance frontier algorithm places explicit $\phi$-nodes at the loop entry blocks to unify the variable's reaching definitions.
+
+### Q: Is the points-to analysis inclusion-based (Andersen) or unification-based (Steensgaard)?
+A: To maintain near-instant analysis speeds, EngineInspector uses a hybrid approach. It implements a local, flow-insensitive analysis over the sharded `SymbolIndex` using points-to confidence weights. This provides highly practical results for resolving indirect call targets without the performance cost of a full Andersen-style inclusion analysis.
+
+### Q: Does the analysis support cross-Translation Unit (cross-TU) analysis?
+A: Yes. While individual files are parsed into independent AST arenas, the `CallGraphExtractor` uses a global, concurrent `SymbolIndex` to resolve symbols across translation units. This allows the engine to trace function calls and points-to relationships across different files within the workspace.
 
 ### Q: How does the incremental diff engine prevent recursive rehashing?
 A: When a code change is made, recalculating hashes for the entire AST tree would be inefficient. The `SemanticHasher` (`diff/semantic_hash.rs`) solves this by building a reverse parent map (`NodeId -> parents`). During an update, it places only the modified nodes into a queue and walks upward through their ancestors, recalculating hashes only along that specific path. This targeted recalculation updates the affected tree signatures in $O(d \log n)$ time (where $d$ is the tree depth).
+
+### Q: How does the performance of EngineInspector compare to Clang Static Analyzer or Semgrep?
+A: The tools use different architectures to prioritize speed and precision:
+*   **Clang Static Analyzer** performs deep path-sensitive symbolic execution. It is highly precise but slow, often requiring significant time to analyze large files.
+*   **Semgrep** is a pattern matcher that runs fast over abstract syntax trees but lacks interprocedural control flow or dataflow analysis.
+*   **EngineInspector** runs on a hybrid architecture. It parses and normalizes codebases using a dedicated hybrid AST-merger, constructs explicit control flow graphs and SSA representations, and feeds them into an incremental semantic diffing and heuristic behavior detector designed to trace complex engine logic (search constraints, time control, aspiration fail, memory layout) across iterations.
+
+### Q: How does the FFI manage memory without Global Interpreter Lock (GIL) overhead?
+A: To prevent Python's Global Interpreter Lock (GIL) from slowing down performance, the Rust core operates on thread-safe, atomically referenced structures (`Arc`). The Python layer interacts with the Rust backend using opaque `u64` handles managed by a global, mutex-protected `HandleManager`. When Python triggers a heavy task (such as `build_callgraph_from_cfg_py`), it passes these handles across the FFI boundary, releases the GIL, and allows the Rust core to run parallel processes on Rust-managed memory threads.
 </details>
 
 ***
 
-## 11. Contact & Support
+## 11. Contact, Feedback & Responsive Support
 
-EngineInspector is developed and maintained by **@EngModiDev**.
+EngineInspector is designed, built, and maintained entirely by me as a solo developer. I put a vast amount of engineering focus and care into this tool, and I deeply value the collective wisdom, scrutiny, and feedback of the global developer community. 
 
-*   For enterprise support, customized parser adapters, or to report structural bugs, please open an issue in our official project repository.
-*   Run `./engineinspector version` to verify your local installation signatures before submitting technical support tickets.
+I sincerely welcome every piece of advice, feature query, structural criticism, or constructive complaint. If any part of this project—whether its hybrid parsing logic, dataflow tracking, or licensing parameters—feels unclear, please do not hesitate to ask. I actively monitor our repository and am committed to responding as quickly as humanly possible to provide clear, transparent, and direct answers.
+
+*   **Have a question, suggestion, or structural bug to report?** Please open an issue in our official [GitHub Issues](https://github.com/EngModiDev/EngineInspector/issues) tab. 
+*   **Interested in our absolute privacy commitments?** For legally binding promises regarding offline execution, process monitoring permissions, and our dual-use license, please refer directly to the adjacent [SECURITY_LICENSE.md](SECURITY_LICENSE.md) file.
+*   **Using a packaged binary?** Always execute `./engineinspector version` to audit your local signatures and verify dependencies before submitting technical support queries.
+
+Thank you for exploring my work, testing my limits, and helping me make EngineInspector a standard-setting tool for developers worldwide.
