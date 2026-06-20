@@ -136,6 +136,11 @@ We have included architectural visual guides inside the `real_tests/` directory 
 *   **Zero-Shift Comment Stripping:** Standard comment removal shifts code offsets, which breaks AST line mapping. Our `Normalizer` class (`normalizer.py`) uses a zero-shift replacement masking technique: it queries Tree-Sitter for comment ranges, then overwrites non-newline comment bytes with spaces (`32` in UTF-8 bytes) while keeping newlines (`10`) intact. This preserves the absolute line map for accurate diff referencing. Python streams are processed via the standard `tokenize` module.
 *   **Unify Indentation and Stable Line Mapping:** The normalizer expands tabs, normalizes newlines, tracks block scopes with an indentation stack, and maintains a stable `line_map` mapping the raw file to the normalized content.
 
+*   **⚡ Zero-Friction C++ Parsing (No compile_commands.json Needed):**
+    Unlike traditional static analysis tools that force you to integrate with complex build systems (such as CMake, Make, or Bear) to generate a `compile_commands.json` database, EngineInspector works out-of-the-box on isolated files.
+    *   *Smart Default Context:* It automatically injects safe standard compiler arguments (`-std=c++17`, `-I/usr/include`, and `/usr/local/include`) into libclang translation units.
+    *   *Standard Headers Auto-Resolution:* If you place standard headers inside `libs/clang_headers/`, the engine automatically detects them and registers them as system paths (`-isystem`), allowing deep semantic parsing of templates and headers even on a completely clean, isolated machine.
+
 ### B. Control Flow, SSA & Dataflow Solver (Rust Core)
 *   **O(1) Arena-Backed AST Storage (`AstArena`):** In `ast/arena.rs`, the Rust core stores tree nodes contiguously as `NodeRecord` entries within a packed vector (`PackedVec` in `utils/memlayout.rs`). References between nodes are stored as compact `NodeId(u32)` indices to maximize CPU L1/L2 cache hit rates and eliminate pointer chasing. Out-of-line metadata (`NodeMeta`) keeps individual node footprints small. A `StringInterner` maps identifiers to `u32` keys to speed up comparisons.
 *   **AstArena Compaction & Remapping:** The `compact_and_remap` method removes logically deleted nodes (marked via tombstones) from the arena, reconstructs the packed nodes vector, and updates remaining parent-child index references.
@@ -235,7 +240,18 @@ EngineInspector approaches diffing structurally using an abstract syntax tree pa
 
 ## 8. First-Run & Offline Integrity
 
-To keep the binary size minimal, EngineInspector does not bundle heavy platform-specific shared libraries (`libclang`). Instead, the tool uses an automated bootstrap process on its first run:
+### 🔌 Explicit Offline Integrity (100% Air-Gapped Option)
+EngineInspector is designed with a strict offline-first philosophy. On the very first launch:
+
+If the required dynamic libraries (`libclang` wrappers) are missing from your local directory, the tool will **not** silently initiate background connections. Instead, it will gracefully halt and present you with two transparent path options:
+
+1.  **Dynamic Download (Opt-In):** You can explicitly trigger the bootstrap download by running the `./engineinspector version` command. This instructs the `BinaryBootstrapper` to fetch the verified platform libraries directly from our public, open repository.
+2.  **Manual Offline Setup:** If your machine is strictly air-gapped or network-restricted, you can manually download the packed libraries from our public, auditable repository ([EngineInspector-libs](https://github.com/EngModiDev/EngineInspector-libs)), unpack them into a local `libs/` directory next to the executable, and completely block all internet access for the binary. The tool will run seamlessly.
+
+***
+
+### The Bootstrapping Lifecycle
+When the bootstrapper executes (either dynamically or verified manually), it processes the following lifecycle:
 
 ```
 [ First Launch ] ──► [ Check Local 'libs/' ] ──► (Exists & Functional?)
@@ -254,7 +270,7 @@ To keep the binary size minimal, EngineInspector does not bundle heavy platform-
                  [ Extract & Link libclang ] ───────────────┘
 ```
 
-1.  **Platform Detection:** The `BinaryBootstrapper` (`core/bootstrap.py`) detects the host operating system and CPU architecture (e.g., Windows x86_64, Linux, or Darwin arm64) to find the correct library variant in the `BINARY_MANIFEST`.
+1.  **Platform Detection:** The `BinaryBootstrapper` (`core/bootstrap.py`) detects the host operating system and CPU architecture (e.g., Windows x86_64, Linux, or Darwin arm64) to locate the matching library variant in the `BINARY_MANIFEST`.
 2.  **Verification:** The bootstrapper queries the companion `.sha256` hash in our repository. It downloads the binary archive into a secure temporary file and validates its SHA-256 signature against the remote manifest before extracting it.
 3.  **Extraction & Safe Placement:** Once validated, the library is extracted into the local `libs/` directory. On Windows, the bootstrapper extracts the contents and automatically cleans up nested directories.
 4.  **Dynamic Shared Library Injection:** The `SharedLibraryInjector` (`core/linker.py`) loads the library. On Windows, it registers the path via `os.add_dll_directory` (with a fallback to prepend the path to the environment variable). On Unix and Darwin platforms, it maps the library into memory via `ctypes.CDLL(..., mode=ctypes.RTLD_GLOBAL)`. Once loaded, the engine is fully functional and operates entirely offline.
@@ -262,6 +278,19 @@ To keep the binary size minimal, EngineInspector does not bundle heavy platform-
 ***
 
 ## 9. Security & Transparency (False Positives)
+
+### 🛡️ Transparency & The Open-Wrapper Architecture
+To guarantee absolute trust, privacy, and security without compromising our core intellectual property, EngineInspector splits its architecture into two distinct layers:
+
+*   **The Open-Source Wrapper (100% Auditable):** 
+    The entire system-facing, dynamic linking, and updating layers are completely open-source and auditable. You can inspect exactly how the binary interacts with your machine in these files:
+    *   `core/linker.py`: Manages platform-specific dynamic library injection using native `ctypes` preloading and DLL path resolution safely.
+    *   `core/bootstrap.py`: Handles the opt-in dynamic library downloader.
+    *   `core/updater.py`: Handles checking and executing updates only when you run the `version` command.
+    *   `core/constants.py`: Stores static environment variables and configurations.
+
+*   **The Proprietary Engine Core (Compiled Native Binary):**
+    The AST parsing, Control Flow Graph (CFG) generation, Static Single Assignment (SSA) mathematical alignment, and our custom Bytecode VM for security rule parsing are compiled into a secure, fast, and highly optimized native binary (`engineinspector_rust`). This keeps our matching math protected from commercial replication.
 
 <details>
 <summary><b>⚠️ Installation Notes &amp; Windows SmartScreen</b></summary>
